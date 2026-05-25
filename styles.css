@@ -513,12 +513,17 @@ img{max-width:100%;display:block}
   background:var(--white-soft);
   overflow:hidden;
 }
-.map-img{
+.map-iframe{
   width:100%;
   aspect-ratio:21/9;
-  background-size:cover;
-  background-position:center;
-  filter:sepia(8%) brightness(0.96);
+  height:auto;
+  border:0;
+  display:block;
+  filter:sepia(6%);
+}
+.map-cta{
+  margin-top:24px;
+  text-align:center;
 }
 
 .route-tips{
@@ -1165,7 +1170,8 @@ img{max-width:100%;display:block}
   .route-step{padding:18px 22px;min-width:180px;width:100%;max-width:280px}
   .step-name{font-size:16px}
   .step-name span{font-size:12px}
-  .map-img{aspect-ratio:16/9}
+  .map-iframe{aspect-ratio:4/5}
+  .map-cta{margin-top:18px}
   .tip{padding:22px 20px}
   .tip-num{font-size:24px;margin-bottom:8px}
   .tip-text{font-size:13.5px;line-height:1.75}
