@@ -72,54 +72,39 @@ window.addEventListener('scroll', () => {
 
   audio.volume = 0.20;
 
-  const STORAGE_KEY = 'mj-bgm-pref'; // "on" | "off"
-  const userPref = localStorage.getItem(STORAGE_KEY);
-
   const setState = (playing) => {
     toggle.dataset.playing = playing ? 'true' : 'false';
   };
 
-  const play = () => {
+  const tryPlay = () => {
     const p = audio.play();
     if (p && typeof p.then === 'function') {
       p.then(() => setState(true))
-       .catch(() => setState(false));   // autoplay blocked — wait for gesture
-    } else {
-      setState(true);
+       .catch(() => setState(false));   // browser blocked — wait for any user gesture
     }
   };
 
-  const pause = () => { audio.pause(); setState(false); };
+  // 1) Attempt autoplay immediately on load
+  tryPlay();
 
-  // 1) Try autoplay immediately (will likely fail on first visit due to browser policy)
-  if (userPref !== 'off') play();
-
-  // 2) On first user interaction, start (if not already playing) — unless user explicitly muted
+  // 2) Fallback: on first user interaction of any kind, start playing
   const startOnGesture = () => {
-    if (userPref === 'off') return cleanup();
-    if (audio.paused) play();
+    if (audio.paused) tryPlay();
     cleanup();
   };
   const cleanup = () => {
-    window.removeEventListener('pointerdown', startOnGesture);
-    window.removeEventListener('keydown',     startOnGesture);
-    window.removeEventListener('scroll',      startOnGesture);
-    window.removeEventListener('touchstart',  startOnGesture);
+    ['pointerdown','keydown','scroll','touchstart'].forEach(ev =>
+      window.removeEventListener(ev, startOnGesture));
   };
   window.addEventListener('pointerdown', startOnGesture, { once:true, passive:true });
   window.addEventListener('keydown',     startOnGesture, { once:true });
   window.addEventListener('scroll',      startOnGesture, { once:true, passive:true });
   window.addEventListener('touchstart',  startOnGesture, { once:true, passive:true });
 
-  // 3) Manual toggle — and remember user choice
+  // 3) Manual toggle (no persistence — fresh start every visit)
   toggle.addEventListener('click', () => {
-    if (audio.paused) {
-      play();
-      localStorage.setItem(STORAGE_KEY, 'on');
-    } else {
-      pause();
-      localStorage.setItem(STORAGE_KEY, 'off');
-    }
+    if (audio.paused) tryPlay();
+    else audio.pause();
   });
 
   // 4) Keep button state in sync with audio events

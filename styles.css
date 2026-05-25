@@ -83,17 +83,22 @@ img{max-width:100%;display:block}
 /* ============== HERO ============== */
 .hero{
   position:relative;
-  height:100vh;min-height:680px;
+  min-height:100vh;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
   background:var(--ink);
+  padding:120px 0 100px;
 }
 .hero-bg{
   position:absolute;inset:-5%;
   background-size:cover;background-position:center 25%;
   filter:grayscale(20%) brightness(0.78) contrast(0.92) sepia(15%);
   opacity:.55;
-  animation:zoomInOut 18s ease-in-out infinite alternate;
+  animation:heroZoomOut 50s ease-out both;
+}
+@keyframes heroZoomOut{
+  from { transform:scale(1.18); }
+  to   { transform:scale(1.0);  }
 }
 .hero-overlay{
   position:absolute;inset:0;
@@ -1091,7 +1096,7 @@ img{max-width:100%;display:block}
   .container{padding:0 20px}
 
   /* Hero */
-  .hero{min-height:560px}
+  .hero{padding:90px 0 70px}
   .hero-sub{font-size:11px;letter-spacing:.35em;margin-bottom:22px}
   .hero-title{font-size:clamp(28px, 7vw, 48px);margin-bottom:26px;gap:.06em}
   .hero-tag{font-size:11px;letter-spacing:.22em;margin-bottom:28px;padding:0 12px}
@@ -1206,6 +1211,7 @@ img{max-width:100%;display:block}
   .container{padding:0 16px}
 
   /* Hero — keep two-line title from breaking awkwardly */
+  .hero{padding:75px 0 60px}
   .hero-title{
     gap:.04em;
     font-size:clamp(22px, 7.5vw, 38px);
