@@ -799,6 +799,84 @@ img{max-width:100%;display:block}
   letter-spacing:.05em;
 }
 
+/* ============== MUSIC TOGGLE ============== */
+.music-toggle{
+  position:fixed;
+  right:24px;bottom:24px;
+  z-index:200;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 18px 12px 14px;
+  background:rgba(42,31,24,0.75);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(212,184,145,0.35);
+  border-radius:40px;
+  color:var(--gold-soft);
+  cursor:pointer;
+  font-family:var(--serif-en);
+  font-size:11px;letter-spacing:.3em;
+  transition:all .3s ease;
+  box-shadow:0 8px 30px rgba(42,31,24,.25);
+}
+.music-toggle:hover{
+  background:rgba(42,31,24,0.92);
+  border-color:var(--gold-soft);
+  transform:translateY(-2px);
+}
+
+.music-toggle .bars{
+  display:inline-flex;align-items:flex-end;gap:2px;
+  width:18px;height:14px;
+}
+.music-toggle .bars span{
+  display:block;width:3px;
+  background:var(--gold-soft);
+  height:30%;
+  border-radius:1px;
+  transform-origin:bottom;
+}
+
+/* Bars animate only when playing */
+.music-toggle[data-playing="true"] .bars span{
+  animation:eq 1s ease-in-out infinite;
+}
+.music-toggle[data-playing="true"] .bars span:nth-child(1){animation-delay:0s}
+.music-toggle[data-playing="true"] .bars span:nth-child(2){animation-delay:.15s}
+.music-toggle[data-playing="true"] .bars span:nth-child(3){animation-delay:.3s}
+.music-toggle[data-playing="true"] .bars span:nth-child(4){animation-delay:.45s}
+
+/* Idle (paused) state — bars flat-ish, label changes */
+.music-toggle[data-playing="false"] .bars span{
+  height:30%;opacity:.55;
+}
+.music-toggle[data-playing="false"] .bars span:nth-child(2){height:55%}
+.music-toggle[data-playing="false"] .bars span:nth-child(3){height:40%}
+
+.music-toggle .music-label{
+  line-height:1;
+  font-weight:500;
+}
+.music-toggle[data-playing="true"]  .music-label::before{content:"PLAYING"}
+.music-toggle[data-playing="false"] .music-label::before{content:"MUTED"}
+.music-toggle .music-label{visibility:hidden;position:relative}
+.music-toggle .music-label::before{
+  visibility:visible;position:absolute;left:0;top:0;
+  white-space:nowrap;
+}
+
+@keyframes eq{
+  0%, 100% { transform:scaleY(0.3); }
+  50%      { transform:scaleY(1);   }
+}
+
+@media (max-width:600px){
+  .music-toggle{
+    right:16px;bottom:16px;
+    padding:10px 14px 10px 12px;
+    font-size:10px;
+  }
+}
+
 /* ============== RESPONSIVE ============== */
 @media (max-width: 900px){
   .nav-menu{display:none}
