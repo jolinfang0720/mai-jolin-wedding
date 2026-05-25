@@ -29,7 +29,7 @@ window.addEventListener('scroll', () => {
   const toggle = document.getElementById('musicToggle');
   if (!audio || !toggle) return;
 
-  audio.volume = 0.45;
+  audio.volume = 0.20;
 
   const STORAGE_KEY = 'mj-bgm-pref'; // "on" | "off"
   const userPref = localStorage.getItem(STORAGE_KEY);
