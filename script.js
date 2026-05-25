@@ -23,6 +23,47 @@ window.addEventListener('scroll', () => {
   lastY = y;
 });
 
+// ============== COUNTDOWN ==============
+(function initCountdown(){
+  const root = document.getElementById('countdown');
+  if (!root) return;
+  const target = new Date(root.dataset.target).getTime();
+  if (Number.isNaN(target)) return;
+
+  const cells = {
+    days:    root.querySelector('[data-unit="days"]'),
+    hours:   root.querySelector('[data-unit="hours"]'),
+    minutes: root.querySelector('[data-unit="minutes"]'),
+    seconds: root.querySelector('[data-unit="seconds"]'),
+  };
+
+  const pad = (n, w = 2) => String(Math.max(0, n)).padStart(w, '0');
+
+  const tick = () => {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      cells.days.textContent    = '000';
+      cells.hours.textContent   = '00';
+      cells.minutes.textContent = '00';
+      cells.seconds.textContent = '00';
+      root.querySelector('.countdown-label').textContent = 'TODAY IS THE DAY';
+      return;
+    }
+    const sec  = Math.floor(diff / 1000);
+    const days = Math.floor(sec / 86400);
+    const hrs  = Math.floor((sec % 86400) / 3600);
+    const min  = Math.floor((sec % 3600) / 60);
+    const s    = sec % 60;
+    cells.days.textContent    = pad(days, 3);
+    cells.hours.textContent   = pad(hrs);
+    cells.minutes.textContent = pad(min);
+    cells.seconds.textContent = pad(s);
+  };
+
+  tick();
+  setInterval(tick, 1000);
+})();
+
 // ============== BACKGROUND MUSIC ==============
 (function initBgm(){
   const audio  = document.getElementById('bgm');
