@@ -112,6 +112,40 @@ window.addEventListener('scroll', () => {
   audio.addEventListener('pause', () => setState(false));
 })();
 
+// ============== CLIPBOARD COPY (address) ==============
+document.querySelectorAll('[data-copy-target]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const id = btn.dataset.copyTarget;
+    const target = document.getElementById(id);
+    if (!target) return;
+    const text = target.textContent.trim();
+
+    const showCopied = () => {
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 1800);
+    };
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for older browsers / non-https
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      showCopied();
+    } catch (err) {
+      console.warn('Copy failed:', err);
+    }
+  });
+});
+
 // Smooth scroll offset for fixed nav
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
