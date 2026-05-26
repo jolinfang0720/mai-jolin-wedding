@@ -234,6 +234,36 @@
     <p class="section-subtitle light">飛機班次建議</p>
     <div class="ornament light"><span></span><span class="diamond">◆</span><span></span></div>
 
+    <!-- Animated flight route: plane flies along curved path -->
+    <div class="flight-route">
+      <div class="fr-side fr-from">
+        <p class="fr-code">TPE / RMQ</p>
+        <p class="fr-name">台灣</p>
+        <p class="fr-sub">桃園 / 台中</p>
+      </div>
+      <div class="fr-arc">
+        <svg class="fr-svg" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path id="flightPath" d="M 14,68 Q 200,-14 386,68" class="fr-arc-line" fill="none"/>
+          <circle cx="14"  cy="68" r="7" class="fr-arc-ring"/>
+          <circle cx="14"  cy="68" r="3.5" class="fr-arc-dot"/>
+          <circle cx="386" cy="68" r="7" class="fr-arc-ring"/>
+          <circle cx="386" cy="68" r="3.5" class="fr-arc-dot"/>
+          <g class="fr-arc-plane">
+            <path d="M 0,-9 L 2,-2 L 11,0 L 11,3 L 2,3 L 2,7 L 5,10 L 5,11 L -5,11 L -5,10 L -2,7 L -2,3 L -11,3 L -11,0 L -2,-2 Z"/>
+            <animateMotion dur="9s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#flightPath"/>
+            </animateMotion>
+          </g>
+        </svg>
+        <p class="fr-arc-meta">✈ 飛行時間 約 1.5 – 2 小時</p>
+      </div>
+      <div class="fr-side fr-to">
+        <p class="fr-code">OKA</p>
+        <p class="fr-name">沖繩</p>
+        <p class="fr-sub">那霸</p>
+      </div>
+    </div>
+
     <div class="flight-note">
       <p>4 月 17 日 (六) 14:30 日本時間 · 建議 14:00 抵達教堂等待</p>
       <p>台灣 → 沖繩 飛行時間 約 1.5-2 小時 · 那霸機場 → 教堂 計程車 約 1 小時</p>
