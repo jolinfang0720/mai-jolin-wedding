@@ -1092,8 +1092,8 @@ img{max-width:100%;display:block}
 }
 .vendor-grid{
   display:grid;
-  grid-template-columns:repeat(5, 1fr);
-  gap:18px;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
   margin-top:20px;
 }
 .vendor-card{
