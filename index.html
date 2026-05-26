@@ -249,7 +249,10 @@
           <circle cx="386" cy="68" r="7" class="fr-arc-ring"/>
           <circle cx="386" cy="68" r="3.5" class="fr-arc-dot"/>
           <g class="fr-arc-plane">
-            <path d="M 0,-9 L 2,-2 L 11,0 L 11,3 L 2,3 L 2,7 L 5,10 L 5,11 L -5,11 L -5,10 L -2,7 L -2,3 L -11,3 L -11,0 L -2,-2 Z"/>
+            <!-- Side-view plane (nose pointing right, ✈ orientation) -->
+            <ellipse cx="0" cy="0" rx="14" ry="2"/>
+            <path d="M -12,-1 L -9,-1 L -11,-7 L -14,-7 Z"/>
+            <path d="M 1,1 L 6,1 L 2,7 L -7,7 Z"/>
             <animateMotion dur="9s" repeatCount="indefinite" rotate="auto">
               <mpath href="#flightPath"/>
             </animateMotion>
@@ -368,9 +371,7 @@
 
 <!-- ====== HOTEL ====== -->
 <section id="hotel" class="section section-hotel">
-  <video class="section-bg-video" autoplay muted loop playsinline preload="metadata">
-    <source src="kv_movie.mp4" type="video/mp4">
-  </video>
+  <div class="section-bg-soft" style="background-image:url('hotel.jpg')"></div>
   <div class="container">
     <p class="eyebrow">RECOMMENDED STAY</p>
     <h2 class="section-title">住宿推薦 · Hotel Nikko Alivila</h2>
@@ -400,7 +401,9 @@
         <a class="link-btn" href="https://www.alivila.co.jp/en/" target="_blank" rel="noopener">飯店官方網站 →</a>
       </div>
       <div class="hotel-visual">
-        <div class="hotel-photo" style="background-image:url('hotel.jpg')"></div>
+        <video class="hotel-video" autoplay muted loop playsinline preload="metadata" poster="hotel.jpg">
+          <source src="kv_movie.mp4" type="video/mp4">
+        </video>
         <p class="photo-caption">Hotel Nikko Alivila · 日航 Alivila</p>
       </div>
     </div>
