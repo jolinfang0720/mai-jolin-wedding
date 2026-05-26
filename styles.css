@@ -724,6 +724,82 @@ img{max-width:100%;display:block}
   letter-spacing:.08em;
 }
 
+/* ---- Booking quick-link buttons (inside flights section) ---- */
+.booking-section{
+  margin-top:70px;
+  padding-top:50px;
+  border-top:1px solid rgba(212,184,145,0.18);
+}
+.booking-heading{
+  text-align:center;
+  font-family:var(--serif-en);
+  font-size:12px;letter-spacing:.32em;
+  color:var(--gold-soft);
+  margin:0 0 24px;
+  font-weight:500;
+}
+.booking-section .booking-heading + .booking-grid + .booking-heading{
+  margin-top:48px;
+}
+.booking-grid{
+  display:grid;
+  gap:14px;
+}
+.booking-grid.airlines{ grid-template-columns:repeat(4, 1fr); }
+.booking-grid.travel  { grid-template-columns:repeat(2, 1fr); }
+
+.booking-card{
+  display:flex;align-items:center;
+  gap:14px;
+  padding:18px 22px;
+  background:rgba(245,239,230,0.04);
+  border:1px solid rgba(212,184,145,0.25);
+  text-decoration:none;
+  color:var(--cream);
+  transition:all .3s ease;
+  position:relative;
+  overflow:hidden;
+}
+.booking-card::before{
+  content:'';
+  position:absolute;left:0;top:0;bottom:0;
+  width:0;
+  background:var(--gold);
+  transition:width .3s ease;
+}
+.booking-card:hover{
+  background:rgba(245,239,230,0.08);
+  border-color:var(--gold-soft);
+  transform:translateY(-2px);
+}
+.booking-card:hover::before{width:3px}
+.booking-card:hover .b-arrow{transform:translateX(4px);color:var(--gold-soft)}
+
+.b-name{
+  font-family:var(--serif-tc);
+  font-weight:500;
+  font-size:15px;
+  letter-spacing:.05em;
+  color:var(--cream);
+  line-height:1.2;
+}
+.b-en{
+  font-family:var(--serif-en);
+  font-style:italic;
+  font-size:12px;
+  color:var(--taupe);
+  letter-spacing:.08em;
+  flex:1;
+  line-height:1.2;
+}
+.b-arrow{
+  font-family:var(--serif-en);
+  font-size:18px;
+  color:var(--taupe-warm);
+  transition:all .3s ease;
+  flex:0 0 auto;
+}
+
 /* ============== HOTEL ============== */
 .section-hotel{
   background:var(--cream-deep);
@@ -1266,6 +1342,17 @@ img{max-width:100%;display:block}
     font-size:10.5px;
   }
   .city-note{font-size:12px}
+
+  /* Booking quick-links */
+  .booking-section{margin-top:50px;padding-top:36px}
+  .booking-heading{font-size:11px;letter-spacing:.26em;margin-bottom:18px}
+  .booking-section .booking-heading + .booking-grid + .booking-heading{margin-top:36px}
+  .booking-grid{gap:10px}
+  .booking-grid.airlines{grid-template-columns:repeat(2, 1fr)}
+  .booking-card{padding:14px 16px;gap:10px;flex-wrap:wrap}
+  .b-name{font-size:13.5px;flex:0 0 100%}
+  .b-en{font-size:11px;flex:1}
+  .b-arrow{font-size:16px}
 
   /* Hotel features */
   .feature{grid-template-columns:38px 1fr;gap:14px;padding:14px 0}
