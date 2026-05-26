@@ -508,11 +508,30 @@ img{max-width:100%;display:block}
   background:repeating-linear-gradient(90deg, var(--taupe) 0, var(--taupe) 6px, transparent 6px, transparent 12px);
   margin:12px 0;
   position:relative;
+  overflow:visible;
 }
 .dash-line::after{
   content:'→';
   position:absolute;right:-4px;top:-12px;
   color:var(--bronze);font-size:18px;
+}
+
+/* Animated little car driving across the dashed line */
+.dash-car{
+  position:absolute;
+  top:-10px;
+  left:0;
+  width:30px;height:12px;
+  color:var(--espresso);
+  pointer-events:none;
+  animation:driveAcross 8s linear infinite;
+  filter:drop-shadow(0 1px 1px rgba(62,44,32,0.15));
+}
+.dash-car svg{display:block;width:100%;height:100%}
+
+@keyframes driveAcross{
+  0%   { left:-30px; }
+  100% { left:100%; }
 }
 
 .map-frame{
@@ -1262,6 +1281,7 @@ img{max-width:100%;display:block}
     background:repeating-linear-gradient(180deg, var(--taupe) 0, var(--taupe) 6px, transparent 6px, transparent 12px);
   }
   .dash-line::after{display:none}
+  .dash-car{display:none}
 
   .route-tips{grid-template-columns:1fr;gap:18px}
   .flight-table{grid-template-columns:1fr;gap:30px}
