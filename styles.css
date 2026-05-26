@@ -378,6 +378,32 @@ img{max-width:100%;display:block}
   background-size:cover;background-position:center 25%;
   filter:grayscale(30%) sepia(15%) brightness(0.95);
 }
+
+/* ---- Venue slideshow (3 chapel photos, 3s each, crossfade) ---- */
+.venue-slideshow{
+  position:relative;
+  width:100%;aspect-ratio:3/4;
+  overflow:hidden;
+  background:var(--sand);
+}
+.vs-slide{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center 25%;
+  filter:grayscale(30%) sepia(15%) brightness(0.95);
+  opacity:0;
+  animation:venueSlideShow 9s infinite ease-in-out;
+}
+.vs-slide:nth-child(1){animation-delay:0s}
+.vs-slide:nth-child(2){animation-delay:3s}
+.vs-slide:nth-child(3){animation-delay:6s}
+
+@keyframes venueSlideShow{
+  0%   { opacity:0; }
+  5%   { opacity:1; }   /* fade in over ~0.45s */
+  33%  { opacity:1; }   /* hold ~2.5s */
+  38%  { opacity:0; }   /* fade out */
+  100% { opacity:0; }
+}
 .photo-caption{
   text-align:center;margin-top:18px;
   font-family:var(--serif-en);
@@ -1302,7 +1328,8 @@ img{max-width:100%;display:block}
   .venue-text h3,.hotel-text h3{font-size:20px;line-height:1.55;margin-bottom:18px}
   .venue-text p,.hotel-text p{font-size:14.5px;line-height:1.9}
   .section-hotel .hotel-text{padding:30px 24px}
-  .venue-photo{aspect-ratio:4/3}
+  .venue-photo,
+  .venue-slideshow{aspect-ratio:4/3}
   .hotel-photo{aspect-ratio:4/3}
   .venue-info-grid{padding:20px;gap:14px}
   .info-label{font-size:9px;letter-spacing:.28em}
