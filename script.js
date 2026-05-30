@@ -13,6 +13,50 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.section, .detail-card, .tip, .contact-card, .feature, .flight-block')
   .forEach(el => io.observe(el));
 
+// ============== MOBILE NAV (hamburger overlay) ==============
+(function initMobileNav(){
+  const toggle  = document.getElementById('navToggle');
+  const overlay = document.getElementById('navOverlay');
+  if (!toggle || !overlay) return;
+
+  const open = () => {
+    toggle.classList.add('open');
+    overlay.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    overlay.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-label', '關閉選單');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    toggle.classList.remove('open');
+    overlay.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-label', '開啟選單');
+    document.body.style.overflow = '';
+  };
+
+  toggle.addEventListener('click', () => {
+    if (overlay.classList.contains('open')) close();
+    else open();
+  });
+
+  // Close after picking a section (and let smooth-scroll handler do its thing)
+  overlay.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setTimeout(close, 50));
+  });
+
+  // ESC to close
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+
+  // If user resizes up to desktop while menu open, close it to avoid stuck overflow
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900 && overlay.classList.contains('open')) close();
+  });
+})();
+
 // Nav shrink on scroll
 const nav = document.querySelector('.nav');
 let lastY = 0;

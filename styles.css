@@ -80,6 +80,105 @@ img{max-width:100%;display:block}
 .nav-menu a:hover{color:var(--espresso)}
 .nav-menu a:hover::after{width:100%}
 
+/* Hamburger toggle button (mobile only) */
+.nav-toggle{
+  display:none;
+  background:none;
+  border:none;
+  padding:8px;
+  cursor:pointer;
+  flex-direction:column;
+  gap:5px;
+  z-index:201;
+  position:relative;
+  margin:-8px;
+}
+.nav-toggle span{
+  display:block;
+  width:24px;height:1.5px;
+  background:var(--espresso);
+  border-radius:1px;
+  transition:transform .35s ease, opacity .25s ease, background-color .25s ease;
+  transform-origin:center;
+}
+.nav-toggle.open span{ background:var(--cream); }
+.nav-toggle.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; transform:scaleX(0); }
+.nav-toggle.open span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+
+/* Full-screen mobile menu overlay */
+.nav-overlay{
+  position:fixed;inset:0;
+  z-index:150;
+  background:rgba(42,31,24,0.94);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;
+  padding:80px 24px 40px;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .4s ease, visibility .4s ease;
+}
+.nav-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+.nav-overlay-menu{
+  list-style:none;
+  text-align:center;
+  margin:0;padding:0;
+  max-height:100%;
+  overflow-y:auto;
+}
+.nav-overlay-menu li{
+  margin:6px 0;
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .45s ease, transform .45s ease;
+}
+.nav-overlay.open .nav-overlay-menu li{
+  opacity:1;
+  transform:translateY(0);
+}
+.nav-overlay.open .nav-overlay-menu li:nth-child(1){transition-delay:.08s}
+.nav-overlay.open .nav-overlay-menu li:nth-child(2){transition-delay:.13s}
+.nav-overlay.open .nav-overlay-menu li:nth-child(3){transition-delay:.18s}
+.nav-overlay.open .nav-overlay-menu li:nth-child(4){transition-delay:.23s}
+.nav-overlay.open .nav-overlay-menu li:nth-child(5){transition-delay:.28s}
+.nav-overlay.open .nav-overlay-menu li:nth-child(6){transition-delay:.33s}
+.nav-overlay.open .nav-overlay-menu li:nth-child(7){transition-delay:.38s}
+.nav-overlay.open .nav-overlay-menu li:nth-child(8){transition-delay:.43s}
+
+.nav-overlay-menu a{
+  display:inline-flex;align-items:baseline;gap:14px;
+  font-family:var(--serif-tc);
+  font-size:22px;letter-spacing:.18em;
+  color:var(--cream);
+  text-decoration:none;
+  padding:14px 24px;
+  position:relative;
+  font-weight:300;
+  transition:color .25s ease;
+}
+.nav-overlay-menu a::after{
+  content:'';
+  position:absolute;left:50%;bottom:6px;
+  width:0;height:1px;
+  background:var(--gold-soft);
+  transition:width .3s ease;
+  transform:translateX(-50%);
+}
+.nav-overlay-menu a:hover{ color:var(--gold-soft); }
+.nav-overlay-menu a:hover::after{ width:50%; }
+.nav-overlay-menu .o-en{
+  font-family:var(--serif-en);
+  font-style:italic;
+  font-size:13px;
+  color:var(--taupe);
+  letter-spacing:.12em;
+  font-weight:400;
+}
+
 /* ============== HERO ============== */
 .hero{
   position:relative;
@@ -1358,11 +1457,17 @@ img{max-width:100%;display:block}
 /* ---- Tablet / large phone (≤ 900px) ---- */
 @media (max-width: 900px){
   .nav-menu{display:none}
-  .nav-inner{padding:14px 24px;justify-content:center}
+  .nav-toggle{display:flex}
+  .nav-inner{padding:14px 24px;justify-content:space-between}
   .section{padding:80px 0}
   .container{padding:0 24px}
 
   .hero-title{font-size:clamp(32px, 6vw, 60px)}
+
+  /* Overlay menu sizing on tablet/phone */
+  .nav-overlay-menu a{font-size:20px;letter-spacing:.14em;padding:12px 20px;gap:12px}
+  .nav-overlay-menu .o-en{font-size:12px;letter-spacing:.1em}
+  .nav-overlay-menu li{margin:4px 0}
 
   .details-grid{grid-template-columns:1fr}
   .detail-card{
@@ -1552,6 +1657,12 @@ img{max-width:100%;display:block}
 @media (max-width: 480px){
   .section{padding:56px 0}
   .container{padding:0 16px}
+
+  /* Overlay menu — even more compact for tiny phones */
+  .nav-overlay{padding:70px 16px 30px}
+  .nav-overlay-menu a{font-size:18px;letter-spacing:.12em;padding:10px 14px;gap:10px}
+  .nav-overlay-menu .o-en{font-size:11px}
+  .nav-overlay-menu li{margin:2px 0}
 
   /* Hero — keep two-line title from breaking awkwardly */
   .hero{padding:75px 0 60px}
