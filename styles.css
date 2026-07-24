@@ -190,7 +190,7 @@ img{max-width:100%;display:block}
 }
 .hero-bg{
   position:absolute;inset:-5%;
-  background-size:cover;background-position:center 38%;
+  background-size:cover;background-position:center 45%;
   filter:grayscale(20%) brightness(0.78) contrast(0.92) sepia(15%);
   opacity:.55;
   animation:heroZoomOut 50s ease-out both;
@@ -356,6 +356,13 @@ img{max-width:100%;display:block}
 
 /* ============== INVITATION ============== */
 .section-invitation{background:var(--cream)}
+/* Show the full invitation photo (no crop) so the bride isn't cut off */
+.section-invitation .section-bg-soft{
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  opacity:.1;
+}
 .invite-body{
   text-align:center;
   font-family:var(--serif-tc);
