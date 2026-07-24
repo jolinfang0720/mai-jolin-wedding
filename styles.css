@@ -1331,8 +1331,9 @@ img{max-width:100%;display:block}
 }
 .vendor-card{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:248px;
   text-align:center;
-  padding:32px 18px 28px;
+  padding:28px 18px;
   background:rgba(245,239,230,0.04);
   border:1px solid rgba(212,184,145,0.18);
   transition:all .35s ease;
@@ -1380,43 +1381,38 @@ img{max-width:100%;display:block}
   font-weight:300;
 }
 
-/* Single supporting credit line under the vendor grid (bridal makeup) */
-.vendor-credit{
+/* Grouped vendor card: studio + a sub-member credit (bridal makeup).
+   All cards share one min-height so this taller card never stretches its row-mates. */
+.vendor-card--group{ gap:0; }
+.vendor-card--group:hover{ transform:none; }
+.v-name--link{
+  text-decoration:none;
+  transition:color .25s ease;
+}
+.v-name--link:hover{ color:var(--gold-soft); }
+
+.v-subcredit{
   display:flex;flex-direction:column;align-items:center;
-  gap:8px;
-  margin-top:34px;
-  padding-top:30px;
-  border-top:1px solid rgba(212,184,145,0.15);
+  gap:2px;
+  margin-top:12px;
+  padding-top:10px;
+  width:100%;
+  border-top:1px solid rgba(212,184,145,0.22);
   text-decoration:none;
   transition:opacity .25s ease;
 }
-.vendor-credit:hover{ opacity:.72; }
-.vendor-credit:hover .vc-arrow{ transform:translateX(4px); }
-.vc-role{
-  font-family:var(--serif-en);
-  font-size:10px;letter-spacing:.32em;
-  color:var(--gold);
-  font-weight:500;
-}
-.vc-line{
+.v-subcredit:hover{ opacity:.72; }
+.vs-name{
   font-family:var(--serif-tc);
-  font-size:15px;letter-spacing:.1em;
+  font-size:12.5px;letter-spacing:.05em;
   color:var(--cream);
-  font-weight:300;
+  line-height:1.35;
 }
-.vc-ig{
+.vs-ig{
   font-family:var(--serif-en);
   font-style:italic;
-  font-size:14px;
+  font-size:12px;letter-spacing:.04em;
   color:var(--gold-soft);
-  letter-spacing:.04em;
-  margin-left:4px;
-}
-.vc-arrow{
-  display:inline-block;
-  color:var(--taupe-warm);
-  transition:transform .3s ease;
-  margin-left:2px;
 }
 
 /* ============== RESPONSIVE ============== */
@@ -1614,14 +1610,10 @@ img{max-width:100%;display:block}
   /* Vendors: 3 → 2 columns */
   .vendors{padding:72px 0 64px}
   .vendor-grid{grid-template-columns:repeat(2, 1fr);gap:14px}
-  .vendor-card{padding:24px 14px 20px}
+  .vendor-card{padding:24px 14px}
   .v-role{font-size:9px;letter-spacing:.28em;margin-bottom:14px}
   .v-name{font-size:17px}
   .v-role-tc{font-size:11px;letter-spacing:.14em}
-  .vendor-credit{margin-top:26px;padding-top:24px;gap:6px}
-  .vc-role{font-size:9px;letter-spacing:.26em}
-  .vc-line{font-size:13.5px;letter-spacing:.06em}
-  .vc-ig{font-size:12.5px}
 }
 
 /* ---- Small phone (≤ 480px) — fit the tightest screens ---- */
@@ -1711,7 +1703,7 @@ img{max-width:100%;display:block}
   .c-sub{font-size:10.5px;letter-spacing:.08em}
 
   /* Vendors: keep 2 columns even on smallest screens — cards are compact enough */
-  .vendor-card{padding:20px 12px 18px}
+  .vendor-card{padding:20px 12px}
   .v-role{font-size:8.5px;letter-spacing:.25em;min-height:2.6em;margin-bottom:12px}
   .v-name{font-size:15px;min-height:2.4em}
   .v-role-tc{font-size:10.5px;letter-spacing:.12em}
