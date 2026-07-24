@@ -356,11 +356,10 @@ img{max-width:100%;display:block}
 
 /* ============== INVITATION ============== */
 .section-invitation{background:var(--cream)}
-/* Show the full invitation photo (no crop) so the bride isn't cut off */
+/* Full-bleed invitation photo, anchored to the top so the bride's head stays visible */
 .section-invitation .section-bg-soft{
-  background-size:contain;
-  background-repeat:no-repeat;
-  background-position:center;
+  background-size:cover;
+  background-position:center top;
   opacity:.1;
 }
 .invite-body{
