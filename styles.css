@@ -190,7 +190,7 @@ img{max-width:100%;display:block}
 }
 .hero-bg{
   position:absolute;inset:-5%;
-  background-size:cover;background-position:center 42%;
+  background-size:cover;background-position:center 38%;
   filter:grayscale(20%) brightness(0.78) contrast(0.92) sepia(15%);
   opacity:.55;
   animation:heroZoomOut 50s ease-out both;
