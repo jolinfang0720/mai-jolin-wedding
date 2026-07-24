@@ -108,54 +108,6 @@ window.addEventListener('scroll', () => {
   setInterval(tick, 1000);
 })();
 
-// ============== BACKGROUND MUSIC ==============
-(function initBgm(){
-  const audio  = document.getElementById('bgm');
-  const toggle = document.getElementById('musicToggle');
-  if (!audio || !toggle) return;
-
-  audio.volume = 0.20;
-
-  const setState = (playing) => {
-    toggle.dataset.playing = playing ? 'true' : 'false';
-  };
-
-  const tryPlay = () => {
-    const p = audio.play();
-    if (p && typeof p.then === 'function') {
-      p.then(() => setState(true))
-       .catch(() => setState(false));   // browser blocked — wait for any user gesture
-    }
-  };
-
-  // 1) Attempt autoplay immediately on load
-  tryPlay();
-
-  // 2) Fallback: on first user interaction of any kind, start playing
-  const startOnGesture = () => {
-    if (audio.paused) tryPlay();
-    cleanup();
-  };
-  const cleanup = () => {
-    ['pointerdown','keydown','scroll','touchstart'].forEach(ev =>
-      window.removeEventListener(ev, startOnGesture));
-  };
-  window.addEventListener('pointerdown', startOnGesture, { once:true, passive:true });
-  window.addEventListener('keydown',     startOnGesture, { once:true });
-  window.addEventListener('scroll',      startOnGesture, { once:true, passive:true });
-  window.addEventListener('touchstart',  startOnGesture, { once:true, passive:true });
-
-  // 3) Manual toggle (no persistence — fresh start every visit)
-  toggle.addEventListener('click', () => {
-    if (audio.paused) tryPlay();
-    else audio.pause();
-  });
-
-  // 4) Keep button state in sync with audio events
-  audio.addEventListener('play',  () => setState(true));
-  audio.addEventListener('pause', () => setState(false));
-})();
-
 // ============== CLIPBOARD COPY (address) ==============
 document.querySelectorAll('[data-copy-target]').forEach(btn => {
   btn.addEventListener('click', async () => {
