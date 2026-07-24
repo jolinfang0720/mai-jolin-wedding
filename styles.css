@@ -1330,7 +1330,7 @@ img{max-width:100%;display:block}
   margin-top:20px;
 }
 .vendor-card{
-  display:flex;flex-direction:column;align-items:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;
   padding:32px 18px 28px;
   background:rgba(245,239,230,0.04);
@@ -1380,43 +1380,43 @@ img{max-width:100%;display:block}
   font-weight:300;
 }
 
-/* Grouped vendor card (studio + a sub-member credit) */
-.vendor-card--group{ justify-content:flex-start; }
-.vendor-card--group:hover{ transform:none; }
-.v-name--link{
-  text-decoration:none;
-  transition:color .25s ease;
-}
-.v-name--link:hover{ color:var(--gold-soft); }
-
-.v-subcredit{
+/* Single supporting credit line under the vendor grid (bridal makeup) */
+.vendor-credit{
   display:flex;flex-direction:column;align-items:center;
-  gap:3px;
-  margin-top:18px;
-  padding-top:16px;
-  width:100%;
-  border-top:1px solid rgba(212,184,145,0.2);
+  gap:8px;
+  margin-top:34px;
+  padding-top:30px;
+  border-top:1px solid rgba(212,184,145,0.15);
   text-decoration:none;
   transition:opacity .25s ease;
 }
-.v-subcredit:hover{ opacity:.75; }
-.vs-role{
+.vendor-credit:hover{ opacity:.72; }
+.vendor-credit:hover .vc-arrow{ transform:translateX(4px); }
+.vc-role{
   font-family:var(--serif-en);
-  font-size:8.5px;letter-spacing:.3em;
-  color:var(--taupe-warm);
+  font-size:10px;letter-spacing:.32em;
+  color:var(--gold);
   font-weight:500;
 }
-.vs-name{
+.vc-line{
   font-family:var(--serif-tc);
-  font-size:13px;letter-spacing:.08em;
+  font-size:15px;letter-spacing:.1em;
   color:var(--cream);
-  line-height:1.3;
+  font-weight:300;
 }
-.vs-ig{
+.vc-ig{
   font-family:var(--serif-en);
   font-style:italic;
-  font-size:12px;letter-spacing:.06em;
+  font-size:14px;
   color:var(--gold-soft);
+  letter-spacing:.04em;
+  margin-left:4px;
+}
+.vc-arrow{
+  display:inline-block;
+  color:var(--taupe-warm);
+  transition:transform .3s ease;
+  margin-left:2px;
 }
 
 /* ============== RESPONSIVE ============== */
@@ -1618,6 +1618,10 @@ img{max-width:100%;display:block}
   .v-role{font-size:9px;letter-spacing:.28em;margin-bottom:14px}
   .v-name{font-size:17px}
   .v-role-tc{font-size:11px;letter-spacing:.14em}
+  .vendor-credit{margin-top:26px;padding-top:24px;gap:6px}
+  .vc-role{font-size:9px;letter-spacing:.26em}
+  .vc-line{font-size:13.5px;letter-spacing:.06em}
+  .vc-ig{font-size:12.5px}
 }
 
 /* ---- Small phone (≤ 480px) — fit the tightest screens ---- */
