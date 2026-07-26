@@ -69,6 +69,7 @@ document.querySelectorAll('.section, .detail-card, .tip, .contact-card, .feature
 (function initMobileNav(){
   const toggle  = document.getElementById('navToggle');
   const overlay = document.getElementById('navOverlay');
+  const closeBtn = document.getElementById('navClose');
   if (!toggle || !overlay) return;
 
   const open = () => {
@@ -91,6 +92,14 @@ document.querySelectorAll('.section, .detail-card, .tip, .contact-card, .feature
   toggle.addEventListener('click', () => {
     if (overlay.classList.contains('open')) close();
     else open();
+  });
+
+  // Dedicated ✕ button closes the menu
+  if (closeBtn) closeBtn.addEventListener('click', close);
+
+  // Tapping the empty backdrop (not a link or the ✕) also closes
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) close();
   });
 
   // Close after picking a section (and let smooth-scroll handler do its thing)

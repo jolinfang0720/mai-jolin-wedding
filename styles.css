@@ -119,6 +119,31 @@ img{max-width:100%;display:block}
   visibility:hidden;
   transition:opacity .4s ease, visibility .4s ease;
 }
+/* Close (✕) button inside the overlay — always tappable above the menu */
+.nav-overlay-close{
+  position:absolute;top:22px;right:22px;
+  width:44px;height:44px;
+  background:none;border:1px solid rgba(212,184,145,0.35);
+  border-radius:50%;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.8);
+  transition:opacity .35s ease .1s, transform .35s ease .1s, border-color .25s ease, background-color .25s ease;
+}
+.nav-overlay.open .nav-overlay-close{opacity:1;transform:scale(1)}
+.nav-overlay-close:hover{
+  border-color:var(--gold-soft);
+  background:rgba(212,184,145,0.08);
+}
+.nav-overlay-close span{
+  position:absolute;
+  width:18px;height:1.5px;
+  background:var(--gold-soft);
+  border-radius:1px;
+}
+.nav-overlay-close span:nth-child(1){transform:rotate(45deg)}
+.nav-overlay-close span:nth-child(2){transform:rotate(-45deg)}
+
 .nav-overlay.open{
   opacity:1;
   visibility:visible;
@@ -395,6 +420,14 @@ img{max-width:100%;display:block}
 .envelope{
   --env-w: 380px;
   --env-h: 250px;
+  --flap-h: 150px;
+  --kraft-1:#d0b98f;
+  --kraft-2:#c0a374;
+  --kraft-3:#ac8e60;
+  --flap-1:#c7a878;
+  --flap-2:#b0905e;
+  --gold:#c6a763;
+  --gold-lt:#e8d3a1;
   position:relative;
   display:flex;flex-direction:column;align-items:center;
   perspective:1400px;
@@ -413,63 +446,81 @@ img{max-width:100%;display:block}
 }
 .env-back{
   position:absolute;inset:0;
-  background:linear-gradient(155deg, #b89a70 0%, #a9895f 55%, #9c7c53 100%);
-  border-radius:6px;
-  box-shadow:0 20px 50px rgba(62,44,32,.28), inset 0 0 0 1px rgba(255,255,255,.06);
+  background:linear-gradient(155deg, var(--kraft-1) 0%, var(--kraft-2) 58%, var(--kraft-3) 100%);
+  border-radius:8px;
+  box-shadow:0 22px 52px rgba(62,44,32,.30),
+             inset 0 0 0 1px rgba(255,255,255,.10),
+             inset 0 0 0 1.5px var(--gold);
+}
+/* fine double-line gilt frame */
+.env-back::after{
+  content:'';position:absolute;inset:8px;
+  border-radius:4px;
+  border:1px solid rgba(198,167,99,.42);
+  pointer-events:none;
 }
 /* Front pocket (bottom face that holds the letter) */
 .env-front{
   position:absolute;left:0;right:0;bottom:0;
-  height:64%;
-  background:linear-gradient(175deg, #c6ac82 0%, #b7986c 100%);
-  border-radius:0 0 6px 6px;
+  height:62%;
+  background:linear-gradient(175deg, #dcc59b 0%, #c8ac7d 100%);
+  border-radius:0 0 8px 8px;
+  border-top:1px solid var(--gold);
   z-index:3;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
-  /* diagonal seams of the front pocket */
-  clip-path:polygon(0 22%, 50% 0, 100% 22%, 100% 100%, 0 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
 }
-/* Top flap — the part that opens */
+/* Top flap — the openable triangle, with a fine gold edge */
 .env-flap{
-  position:absolute;top:0;left:0;
-  width:0;height:0;
-  border-left:calc(var(--env-w)/2) solid transparent;
-  border-right:calc(var(--env-w)/2) solid transparent;
-  border-top:150px solid #b0925f;      /* triangle pointing down */
+  position:absolute;top:0;left:0;display:block;
+  width:var(--env-w);height:var(--flap-h);
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
+  background:linear-gradient(160deg, var(--gold-lt), var(--gold));  /* gold edge layer */
   transform-origin:top center;
-  transition:transform .6s cubic-bezier(.6,.05,.28,.98), border-top-color .6s;
+  transition:transform .6s cubic-bezier(.6,.05,.28,.98), filter .6s, opacity .5s;
   z-index:5;
-  filter:drop-shadow(0 3px 4px rgba(62,44,32,.18));
+  filter:drop-shadow(0 4px 6px rgba(62,44,32,.20));
 }
-/* Wax seal sits at the flap tip (centre) */
+.env-flap::after{                         /* inner kraft face, inset to reveal the gold edge */
+  content:'';position:absolute;
+  top:1.5px;left:1.5px;right:1.5px;bottom:3px;
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
+  background:linear-gradient(160deg, var(--flap-1) 0%, var(--flap-2) 100%);
+}
+/* Wax seal sits at the flap tip (centre) — burgundy with a gold ring */
 .env-seal{
   position:absolute;top:112px;left:50%;
   width:76px;height:76px;
   margin-left:-38px;
   border-radius:50%;
-  background:radial-gradient(circle at 38% 32%, #a8434a 0%, #8e343b 45%, #6f2329 100%);
-  box-shadow:0 4px 10px rgba(62,20,24,.45), inset 0 2px 6px rgba(255,255,255,.18), inset 0 -3px 8px rgba(0,0,0,.35);
+  background:radial-gradient(circle at 38% 30%, #ad464d 0%, #8e343b 46%, #6b2127 100%);
+  box-shadow:0 5px 12px rgba(62,20,24,.45),
+             inset 0 2px 6px rgba(255,255,255,.20),
+             inset 0 -4px 9px rgba(0,0,0,.38),
+             0 0 0 2px rgba(198,167,99,.65),
+             0 0 0 3px rgba(232,211,161,.30);
   z-index:6;
   display:flex;align-items:center;justify-content:center;
   transition:transform .5s ease, opacity .45s ease;
 }
 .env-seal::before{
-  content:'';position:absolute;inset:6px;
+  content:'';position:absolute;inset:7px;
   border-radius:50%;
-  border:1px dashed rgba(255,235,220,.35);
+  border:1px solid rgba(232,211,161,.45);
 }
 .seal-inner{
   font-family:var(--display);
-  font-size:22px;letter-spacing:.02em;
-  color:#f3d9c4;
-  text-shadow:0 1px 1px rgba(0,0,0,.4);
+  font-size:23px;letter-spacing:.02em;
+  color:#f4dcc4;
+  text-shadow:0 1px 1px rgba(0,0,0,.45);
   line-height:1;
 }
 .seal-inner em{
   font-family:var(--serif-en);
   font-style:italic;
-  font-size:.7em;
+  font-size:.68em;
   margin:0 1px;
-  opacity:.85;
+  color:var(--gold-lt);
+  opacity:.9;
 }
 .env-hint{
   position:absolute;left:0;right:0;bottom:-34px;
@@ -515,7 +566,7 @@ img{max-width:100%;display:block}
 .envelope[data-open="true"] .env-flap{
   transform:rotateX(-172deg);
   z-index:1;
-  border-top-color:#a3835455;
+  opacity:.92;
 }
 .envelope[data-open="true"] .env-seal{
   transform:translateY(-18px) scale(.7) rotate(-8deg);
@@ -1634,8 +1685,7 @@ img{max-width:100%;display:block}
   .invite-body .spacer{height:18px}
 
   /* Envelope — scale down for phones */
-  .envelope{--env-w:320px;--env-h:212px}
-  .env-flap{border-top-width:128px}
+  .envelope{--env-w:320px;--env-h:212px;--flap-h:128px}
   .env-seal{top:95px;width:66px;height:66px;margin-left:-33px}
   .seal-inner{font-size:19px}
 
@@ -1796,8 +1846,7 @@ img{max-width:100%;display:block}
   .ornament span{width:30px}
 
   /* Envelope — smallest phones */
-  .envelope{--env-w:270px;--env-h:182px}
-  .env-flap{border-top-width:110px}
+  .envelope{--env-w:270px;--env-h:182px;--flap-h:110px}
   .env-seal{top:80px;width:58px;height:58px;margin-left:-29px}
   .seal-inner{font-size:16px}
   .env-hint{font-size:10px;letter-spacing:.2em;bottom:-30px}
