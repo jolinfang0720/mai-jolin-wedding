@@ -169,50 +169,63 @@
 
     <p class="couple-line">毓璋 <span class="amp-small">Mai</span> &nbsp;&amp;&nbsp; 嘉苓 <span class="amp-small">Jolin</span></p>
 
-    <!-- Wedding day schedule -->
-    <div class="schedule">
-      <p class="sch-eyebrow">WEDDING DAY · 4 / 17</p>
-      <h3 class="sch-title">當日流程</h3>
-      <p class="sch-loc">葛洛麗教堂・14:30 婚禮開始</p>
+    <!-- Wedding day schedule — ancient scroll -->
+    <div class="scroll" id="dayScroll" data-open="false">
+      <div class="scroll-roller scroll-roller--top"></div>
 
-      <div class="sch-list">
-        <div class="sch-item">
-          <span class="sch-time">11:00 – 12:30</span>
-          <span class="sch-event">新郎新娘梳化時間</span>
-        </div>
-        <div class="sch-item">
-          <span class="sch-time">13:30 – 13:45</span>
-          <span class="sch-event">休息室內花絮拍攝</span>
-        </div>
-        <div class="sch-item">
-          <span class="sch-time">13:45 – 14:00</span>
-          <span class="sch-event">教堂周邊外景拍攝</span>
-        </div>
-        <div class="sch-item">
-          <span class="sch-time">14:00 – 14:20</span>
-          <span class="sch-event">彩排</span>
-        </div>
-        <div class="sch-item highlight">
-          <span class="sch-time">14:20 – 14:30</span>
-          <span class="sch-event">賓客引導進教堂 <em class="sch-note">（賓客 14:20 抵達即可）</em></span>
-        </div>
-        <div class="sch-item highlight">
-          <span class="sch-time">14:30 – 15:00</span>
-          <span class="sch-event">婚禮開始 ✦</span>
-        </div>
-        <div class="sch-item">
-          <span class="sch-time">15:00 – 15:30</span>
-          <span class="sch-event">儀式後活動(敲鐘・親友大合照)</span>
-        </div>
-        <div class="sch-item">
-          <span class="sch-time">15:30 – 16:15</span>
-          <span class="sch-event">沙灘 &amp; 飯店外景拍攝</span>
-        </div>
-        <div class="sch-item">
-          <span class="sch-time">16:15 –</span>
-          <span class="sch-event">散會</span>
+      <div class="scroll-paper" id="scrollPaper" role="button" tabindex="0" aria-expanded="false">
+        <div class="scroll-edge scroll-edge--l"></div>
+        <div class="scroll-edge scroll-edge--r"></div>
+        <div class="scroll-content">
+          <p class="sch-eyebrow">WEDDING DAY · 4 / 17</p>
+          <h3 class="sch-title">當日流程</h3>
+          <p class="sch-loc">葛洛麗教堂・14:30 婚禮開始</p>
+          <p class="scroll-hint">輕觸展開卷軸 · TAP TO UNROLL</p>
+
+          <div class="sch-list">
+            <div class="sch-item">
+              <span class="sch-time">11:00 – 12:30</span>
+              <span class="sch-event">新郎新娘梳化時間</span>
+            </div>
+            <div class="sch-item">
+              <span class="sch-time">13:30 – 13:45</span>
+              <span class="sch-event">休息室內花絮拍攝</span>
+            </div>
+            <div class="sch-item">
+              <span class="sch-time">13:45 – 14:00</span>
+              <span class="sch-event">教堂周邊外景拍攝</span>
+            </div>
+            <div class="sch-item">
+              <span class="sch-time">14:00 – 14:20</span>
+              <span class="sch-event">彩排</span>
+            </div>
+            <div class="sch-item highlight">
+              <span class="sch-time">14:20 – 14:30</span>
+              <span class="sch-event">賓客引導進教堂 <em class="sch-note">（賓客 14:20 抵達即可）</em></span>
+            </div>
+            <div class="sch-item highlight">
+              <span class="sch-time">14:30 – 15:00</span>
+              <span class="sch-event">婚禮開始 ✦</span>
+            </div>
+            <div class="sch-item">
+              <span class="sch-time">15:00 – 15:30</span>
+              <span class="sch-event">儀式後活動(敲鐘・親友大合照)</span>
+            </div>
+            <div class="sch-item">
+              <span class="sch-time">15:30 – 16:15</span>
+              <span class="sch-event">沙灘 &amp; 飯店外景拍攝</span>
+            </div>
+            <div class="sch-item">
+              <span class="sch-time">16:15 –</span>
+              <span class="sch-event">散會</span>
+            </div>
+          </div>
+
+          <button class="scroll-reroll" id="scrollReroll" type="button">✕ 收合卷軸</button>
         </div>
       </div>
+
+      <div class="scroll-roller scroll-roller--bottom"></div>
     </div>
   </div>
 </section>
@@ -362,57 +375,99 @@
       <p>台灣與日本時差 <strong>+1 小時</strong> · 班機資訊更新至 2026.07(華航台中每日直飛新增)</p>
     </div>
 
-    <!-- TAIPEI -->
-    <div class="flight-block">
-      <h3 class="city-title">🌸 台北 — 桃園國際 (TPE) <span>每日固定班機</span></h3>
-
-      <div class="flight-table">
-        <div class="flight-direction">
-          <h4>↪︎ 去程 &nbsp;桃園 → 沖繩那霸</h4>
-          <ul>
-            <li><span class="airline">長榮</span><span class="time">06:55 – 09:15</span></li>
-            <li><span class="airline">華航</span><span class="time">08:10 – 10:45</span></li>
-            <li><span class="airline">星宇</span><span class="time">11:40 – 14:15</span></li>
-            <li><span class="airline">長榮</span><span class="time">16:50 – 19:10</span></li>
-            <li><span class="airline">華航</span><span class="time">16:45 – 19:15</span></li>
-          </ul>
+    <!-- TAIPEI ticket -->
+    <div class="ticket">
+      <div class="ticket-main">
+        <div class="ticket-head">
+          <span class="tk-brand">BOARDING PASS · 登機證</span>
+          <span class="tk-daily">🌸 每日固定班機</span>
         </div>
-        <div class="flight-direction">
-          <h4>↩︎ 回程 &nbsp;沖繩那霸 → 桃園</h4>
-          <ul>
-            <li><span class="airline">長榮</span><span class="time">10:15 – 10:55</span></li>
-            <li><span class="airline">長榮</span><span class="time">20:10 – 20:55</span></li>
-            <li><span class="airline">華航</span><span class="time">11:55 – 12:35</span></li>
-            <li><span class="airline">華航</span><span class="time">20:15 – 20:55</span></li>
-            <li><span class="airline">星宇</span><span class="time">15:20 – 16:10</span></li>
-          </ul>
+        <div class="ticket-route">
+          <div class="tk-port">
+            <span class="tk-code">TPE</span>
+            <span class="tk-city">台北 · 桃園國際</span>
+          </div>
+          <div class="tk-mid"><span class="tk-plane">✈</span><span class="tk-dur">1.5–2h</span></div>
+          <div class="tk-port tk-port--to">
+            <span class="tk-code">OKA</span>
+            <span class="tk-city">沖繩 · 那霸</span>
+          </div>
         </div>
+        <div class="flight-table">
+          <div class="flight-direction">
+            <h4>↪︎ 去程 &nbsp;桃園 → 那霸</h4>
+            <ul>
+              <li><span class="airline">長榮</span><span class="time">06:55 – 09:15</span></li>
+              <li><span class="airline">華航</span><span class="time">08:10 – 10:45</span></li>
+              <li><span class="airline">星宇</span><span class="time">11:40 – 14:15</span></li>
+              <li><span class="airline">長榮</span><span class="time">16:50 – 19:10</span></li>
+              <li><span class="airline">華航</span><span class="time">16:45 – 19:15</span></li>
+            </ul>
+          </div>
+          <div class="flight-direction">
+            <h4>↩︎ 回程 &nbsp;那霸 → 桃園</h4>
+            <ul>
+              <li><span class="airline">長榮</span><span class="time">10:15 – 10:55</span></li>
+              <li><span class="airline">長榮</span><span class="time">20:10 – 20:55</span></li>
+              <li><span class="airline">華航</span><span class="time">11:55 – 12:35</span></li>
+              <li><span class="airline">華航</span><span class="time">20:15 – 20:55</span></li>
+              <li><span class="airline">星宇</span><span class="time">15:20 – 16:10</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-stub">
+        <span class="ts-label">FLIGHT</span>
+        <span class="ts-route">TPE<br/>↓<br/>OKA</span>
+        <span class="ts-date">2027.04.17</span>
+        <span class="ts-barcode" aria-hidden="true"></span>
       </div>
     </div>
 
-    <!-- TAICHUNG -->
-    <div class="flight-block">
-      <h3 class="city-title">🌸 台中 — 清泉崗 (RMQ) <span>每日至少一班</span></h3>
-
-      <div class="flight-table">
-        <div class="flight-direction">
-          <h4>↪︎ 去程 &nbsp;清泉崗 → 沖繩那霸</h4>
-          <ul>
-            <li><span class="airline">華航</span><span class="time">10:00 – 12:40</span><span class="tag tag-rec">每日 · A321neo</span></li>
-            <li><span class="airline">星宇</span><span class="time">13:15 – 15:45</span></li>
-            <li><span class="airline">星宇</span><span class="time">17:00 – 19:30</span></li>
-            <li><span class="airline">虎航</span><span class="time">07:10 – 09:40</span><span class="tag">每週一・五</span></li>
-          </ul>
+    <!-- TAICHUNG ticket -->
+    <div class="ticket">
+      <div class="ticket-main">
+        <div class="ticket-head">
+          <span class="tk-brand">BOARDING PASS · 登機證</span>
+          <span class="tk-daily">🌸 每日至少一班</span>
         </div>
-        <div class="flight-direction">
-          <h4>↩︎ 回程 &nbsp;沖繩那霸 → 清泉崗</h4>
-          <ul>
-            <li><span class="airline">華航</span><span class="time">13:40 – 14:10</span><span class="tag tag-rec">每日 · A321neo</span></li>
-            <li><span class="airline">星宇</span><span class="time">16:45 – 17:35</span></li>
-            <li><span class="airline">星宇</span><span class="time">20:30 – 21:20</span></li>
-            <li><span class="airline">虎航</span><span class="time">19:00 – 19:30</span><span class="tag">每週二・四</span></li>
-          </ul>
+        <div class="ticket-route">
+          <div class="tk-port">
+            <span class="tk-code">RMQ</span>
+            <span class="tk-city">台中 · 清泉崗</span>
+          </div>
+          <div class="tk-mid"><span class="tk-plane">✈</span><span class="tk-dur">1.5–2h</span></div>
+          <div class="tk-port tk-port--to">
+            <span class="tk-code">OKA</span>
+            <span class="tk-city">沖繩 · 那霸</span>
+          </div>
         </div>
+        <div class="flight-table">
+          <div class="flight-direction">
+            <h4>↪︎ 去程 &nbsp;清泉崗 → 那霸</h4>
+            <ul>
+              <li><span class="airline">華航</span><span class="time">10:00 – 12:40</span><span class="tag tag-rec">每日 · A321neo</span></li>
+              <li><span class="airline">星宇</span><span class="time">13:15 – 15:45</span></li>
+              <li><span class="airline">星宇</span><span class="time">17:00 – 19:30</span></li>
+              <li><span class="airline">虎航</span><span class="time">07:10 – 09:40</span><span class="tag">每週一・五</span></li>
+            </ul>
+          </div>
+          <div class="flight-direction">
+            <h4>↩︎ 回程 &nbsp;那霸 → 清泉崗</h4>
+            <ul>
+              <li><span class="airline">華航</span><span class="time">13:40 – 14:10</span><span class="tag tag-rec">每日 · A321neo</span></li>
+              <li><span class="airline">星宇</span><span class="time">16:45 – 17:35</span></li>
+              <li><span class="airline">星宇</span><span class="time">20:30 – 21:20</span></li>
+              <li><span class="airline">虎航</span><span class="time">19:00 – 19:30</span><span class="tag">每週二・四</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-stub">
+        <span class="ts-label">FLIGHT</span>
+        <span class="ts-route">RMQ<br/>↓<br/>OKA</span>
+        <span class="ts-date">2027.04.17</span>
+        <span class="ts-barcode" aria-hidden="true"></span>
       </div>
     </div>
 
