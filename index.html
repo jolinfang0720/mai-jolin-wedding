@@ -81,36 +81,59 @@
   </div>
 </section>
 
-<!-- ====== INVITATION (引言) ====== -->
+<!-- ====== INVITATION (引言) — envelope experiment ====== -->
 <section id="invitation" class="section section-invitation">
   <div class="section-bg-soft" style="background-image:url('invitation.jpg')"></div>
   <div class="container narrow">
-    <p class="eyebrow">INVITATION · 致 我們最親愛的你</p>
-    <h2 class="section-title">一封來自沖繩的邀請</h2>
-    <div class="ornament"><span></span><span class="diamond">◆</span><span></span></div>
 
-    <div class="invite-body">
-      <p>辦這場證婚的初衷很簡單,</p>
-      <p>希望在大家忙碌的生活裡,</p>
-      <p>能有一個理由 —</p>
-      <p>放下日常的忙碌,安排一趟旅行。</p>
-      <p class="spacer"></p>
-      <p>我們希望你把這場觀禮,</p>
-      <p>當作旅程中的一小站,</p>
-      <p>帶著重要的人一起出國,順道陪伴我們,</p>
-      <p>把更多時間留給「自己」好好享受旅程。</p>
-      <p class="spacer"></p>
-      <p class="emphasis">最寶貴的絕非金錢禮物 ✦</p>
-      <p>而是您的時間。</p>
-      <p>能出席對我們來說已是最大的禮物,</p>
-      <p>所以<strong>無需額外準備禮物或禮金</strong>。</p>
-      <p class="spacer"></p>
-      <p>人生有無數個平凡的日子,</p>
-      <p>而這一天,相信因為有你們陪著我們,</p>
-      <p>將會變得格外珍貴。</p>
-      <p class="spacer"></p>
-      <p class="closing">沖繩的海風與陽光沙灘都知道,</p>
-      <p class="closing">我們有多期待 與你們相聚的那刻。</p>
+    <div class="envelope" id="envelope" data-open="false">
+
+      <!-- Closed envelope graphic (click to open) -->
+      <button class="env-shell" id="envToggle" type="button" aria-expanded="false" aria-controls="invite-letter">
+        <span class="env-back"></span>
+        <span class="env-front"></span>
+        <span class="env-flap"></span>
+        <span class="env-seal">
+          <span class="seal-inner">M<em>&amp;</em>J</span>
+        </span>
+        <span class="env-hint">輕觸開啟信封 · TAP TO OPEN</span>
+      </button>
+
+      <!-- The letter that is pulled out -->
+      <div class="letter" id="invite-letter">
+        <div class="letter-inner">
+          <p class="eyebrow">INVITATION · 致 我們最親愛的你</p>
+          <h2 class="section-title">一封來自沖繩的邀請</h2>
+          <div class="ornament"><span></span><span class="diamond">◆</span><span></span></div>
+
+          <div class="invite-body">
+            <p>辦這場證婚的初衷很簡單,</p>
+            <p>希望在大家忙碌的生活裡,</p>
+            <p>能有一個理由 —</p>
+            <p>放下日常的忙碌,安排一趟旅行。</p>
+            <p class="spacer"></p>
+            <p>我們希望你把這場觀禮,</p>
+            <p>當作旅程中的一小站,</p>
+            <p>帶著重要的人一起出國,順道陪伴我們,</p>
+            <p>把更多時間留給「自己」好好享受旅程。</p>
+            <p class="spacer"></p>
+            <p class="emphasis">最寶貴的絕非金錢禮物 ✦</p>
+            <p>而是您的時間。</p>
+            <p>能出席對我們來說已是最大的禮物,</p>
+            <p>所以<strong>無需額外準備禮物或禮金</strong>。</p>
+            <p class="spacer"></p>
+            <p>人生有無數個平凡的日子,</p>
+            <p>而這一天,相信因為有你們陪著我們,</p>
+            <p>將會變得格外珍貴。</p>
+            <p class="spacer"></p>
+            <p class="closing">沖繩的海風與陽光沙灘都知道,</p>
+            <p class="closing">我們有多期待 與你們相聚的那刻。</p>
+          </div>
+
+          <button class="letter-close" id="envClose" type="button">✕ 收合信封</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

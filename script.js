@@ -1,5 +1,57 @@
 /* MAI & JOLIN WEDDING — minimal interactions */
 
+// ============== INVITATION ENVELOPE ==============
+(function initEnvelope(){
+  const env    = document.getElementById('envelope');
+  const toggle = document.getElementById('envToggle');
+  const close  = document.getElementById('envClose');
+  const letter = document.getElementById('invite-letter');
+  if (!env || !toggle || !letter) return;
+
+  let animating = false;
+
+  const open = () => {
+    if (env.dataset.open === 'true' || animating) return;
+    animating = true;
+    env.dataset.open = 'true';
+    toggle.setAttribute('aria-expanded', 'true');
+    // animate height from 0 → content height, then release to auto (stays responsive)
+    letter.style.height = letter.scrollHeight + 'px';
+    const done = (e) => {
+      if (e.propertyName !== 'height') return;
+      letter.style.height = 'auto';
+      animating = false;
+      letter.removeEventListener('transitionend', done);
+    };
+    letter.addEventListener('transitionend', done);
+  };
+
+  const shut = () => {
+    if (env.dataset.open !== 'true' || animating) return;
+    animating = true;
+    // from auto → fixed px → 0 so the collapse can animate
+    letter.style.height = letter.scrollHeight + 'px';
+    void letter.offsetHeight;            // force reflow
+    requestAnimationFrame(() => {
+      env.dataset.open = 'false';
+      toggle.setAttribute('aria-expanded', 'false');
+      letter.style.height = '0px';
+    });
+    const done = (e) => {
+      if (e.propertyName !== 'height') return;
+      animating = false;
+      letter.removeEventListener('transitionend', done);
+      env.scrollIntoView({ behavior:'smooth', block:'center' });
+    };
+    letter.addEventListener('transitionend', done);
+  };
+
+  toggle.addEventListener('click', open);
+  if (close) close.addEventListener('click', shut);
+
+  // If the window resizes while open (height:auto), nothing to fix — auto reflows.
+})();
+
 // Fade-in on scroll for sections
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
