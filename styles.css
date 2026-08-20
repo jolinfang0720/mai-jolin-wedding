@@ -448,14 +448,6 @@ img{max-width:100%;display:block}
 .envelope{
   --env-w: 380px;
   --env-h: 250px;
-  --flap-h: 150px;
-  --kraft-1:#3a4761;
-  --kraft-2:#2c3850;
-  --kraft-3:#1f2a3d;
-  --flap-1:#39465f;
-  --flap-2:#28344a;
-  --gold:#d4b878;
-  --gold-lt:#f0dda8;
   position:relative;
   display:flex;flex-direction:column;align-items:center;
   perspective:1400px;
@@ -472,86 +464,68 @@ img{max-width:100%;display:block}
   transform-style:preserve-3d;
   transition:opacity .5s ease, transform .6s ease, visibility .6s;
 }
-.env-back{
-  position:absolute;inset:0;
-  background:linear-gradient(155deg, var(--kraft-1) 0%, var(--kraft-2) 58%, var(--kraft-3) 100%);
-  border-radius:8px;
-  box-shadow:0 22px 52px rgba(62,44,32,.30),
-             inset 0 0 0 1px rgba(255,255,255,.10),
-             inset 0 0 0 1.5px var(--gold);
+/* --- 4-triangle envelope: all apexes meet at the exact centre (clean alignment) --- */
+.env-base{
+  position:absolute;inset:0;border-radius:6px;
+  background:#3a4761;                                    /* inner lining */
+  box-shadow:0 22px 50px rgba(15,22,38,.42);
 }
-/* fine double-line gilt frame */
-.env-back::after{
-  content:'';position:absolute;inset:8px;
-  border-radius:4px;
-  border:1px solid rgba(212,184,120,.45);
-  pointer-events:none;
+.env-left,.env-right{
+  position:absolute;top:0;height:100%;width:50%;
+  background:#26314a;z-index:2;                          /* side flaps (recede) */
 }
-/* Front pocket (bottom face that holds the letter) */
-.env-front{
-  position:absolute;left:0;right:0;bottom:0;
-  height:62%;
-  background:linear-gradient(175deg, #43526e 0%, #33405a 100%);
-  border-radius:0 0 8px 8px;
-  border-top:1px solid var(--gold);
-  z-index:3;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+.env-left{left:0;clip-path:polygon(0 0, 0 100%, 100% 50%)}
+.env-right{right:0;clip-path:polygon(100% 0, 100% 100%, 0 50%)}
+.env-bottom{                                             /* front pocket */
+  position:absolute;left:0;bottom:0;width:100%;height:50%;
+  background:#33415d;z-index:3;border-radius:0 0 6px 6px;
+  clip-path:polygon(0 100%, 100% 100%, 50% 0);
 }
-/* Top flap — SVG triangle with an EVEN gold hairline on all three edges */
-.env-flap{
-  position:absolute;top:0;left:0;display:block;
-  width:var(--env-w);height:var(--flap-h);
+.env-flap{                                               /* top cover — breathes, opens */
+  position:absolute;left:0;top:0;width:100%;height:50%;
+  background:#2c3850;z-index:5;
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
   transform-origin:top center;
-  transition:transform .6s cubic-bezier(.6,.05,.28,.98), filter .6s, opacity .5s;
-  z-index:5;
-  filter:drop-shadow(0 4px 6px rgba(62,44,32,.20));
+  filter:drop-shadow(0 6px 7px rgba(15,22,38,.35));
+  animation:envBreath 3.4s ease-in-out infinite alternate;
+  transition:transform .6s cubic-bezier(.6,.05,.28,.98), opacity .5s;
 }
-.env-flap-svg{
-  position:absolute;inset:0;
-  width:100%;height:100%;display:block;overflow:visible;
+@keyframes envBreath{
+  0%  { transform:rotateX(0deg); }
+  100%{ transform:rotateX(-11deg); }
 }
-.ef-poly{
-  stroke:var(--gold);
-  stroke-width:1.4;
-  vector-effect:non-scaling-stroke;   /* constant 1.4px on every edge, no matter the stretch */
-  stroke-linejoin:round;
-}
-/* Wax seal sits at the flap tip (centre) — burgundy with a gold ring */
+.env-shell:hover .env-flap{ animation:none; transform:rotateX(-24deg); }
+
+/* Wax seal at the exact centre where the four flaps meet */
 .env-seal{
-  position:absolute;top:112px;left:50%;
-  width:76px;height:76px;
-  margin-left:-38px;
-  border-radius:50%;
+  position:absolute;top:50%;left:50%;
+  width:78px;height:78px;margin:-39px 0 0 -39px;
+  border-radius:50%;overflow:hidden;
   background:radial-gradient(circle at 38% 30%, #ad464d 0%, #8e343b 46%, #6b2127 100%);
-  box-shadow:0 5px 12px rgba(62,20,24,.45),
+  box-shadow:0 6px 13px rgba(40,15,18,.5),
              inset 0 2px 6px rgba(255,255,255,.20),
-             inset 0 -4px 9px rgba(0,0,0,.38),
-             0 0 0 2px rgba(198,167,99,.65),
-             0 0 0 3px rgba(232,211,161,.30);
+             inset 0 -4px 9px rgba(0,0,0,.4),
+             0 0 0 2px rgba(212,184,120,.6),
+             0 0 0 3px rgba(240,221,168,.28);
   z-index:6;
   display:flex;align-items:center;justify-content:center;
   transition:transform .5s ease, opacity .45s ease;
 }
 .env-seal::before{
-  content:'';position:absolute;inset:7px;
-  border-radius:50%;
-  border:1px solid rgba(232,211,161,.45);
+  content:'';position:absolute;inset:7px;border-radius:50%;
+  border:1px solid rgba(240,221,168,.4);
 }
 .seal-inner{
   font-family:'Great Vibes', cursive;
-  font-size:26px;letter-spacing:.01em;
-  color:#f4dcc4;
+  font-size:23px;line-height:1;
+  color:#f6e0c8;
   text-shadow:0 1px 2px rgba(0,0,0,.5);
-  line-height:1;
   transform:translateY(1px);
 }
 .seal-inner em{
   font-family:'Great Vibes', cursive;
-  font-style:normal;
-  font-size:.78em;
-  margin:0 1px;
-  color:var(--gold-lt);
-  opacity:.95;
+  font-style:normal;font-size:.8em;
+  color:#f0dda8;opacity:.95;margin:0 1px;
 }
 .env-hint{
   position:absolute;left:0;right:0;bottom:-34px;
@@ -595,6 +569,7 @@ img{max-width:100%;display:block}
 
 /* --- OPEN state --- */
 .envelope[data-open="true"] .env-flap{
+  animation:none;                 /* stop breathing, swing fully open */
   transform:rotateX(-172deg);
   z-index:1;
   opacity:.92;
@@ -1809,9 +1784,9 @@ img{max-width:100%;display:block}
   .invite-body .spacer{height:18px}
 
   /* Envelope — scale down for phones */
-  .envelope{--env-w:320px;--env-h:212px;--flap-h:128px}
-  .env-seal{top:95px;width:66px;height:66px;margin-left:-33px}
-  .seal-inner{font-size:22px}
+  .envelope{--env-w:320px;--env-h:212px}
+  .env-seal{width:68px;height:68px;margin:-34px 0 0 -34px}
+  .seal-inner{font-size:20px}
 
   /* Details cards */
   .detail-card{padding:38px 20px}
@@ -1985,9 +1960,9 @@ img{max-width:100%;display:block}
   .ornament span{width:30px}
 
   /* Envelope — smallest phones */
-  .envelope{--env-w:270px;--env-h:182px;--flap-h:110px}
-  .env-seal{top:80px;width:58px;height:58px;margin-left:-29px}
-  .seal-inner{font-size:19px}
+  .envelope{--env-w:270px;--env-h:182px}
+  .env-seal{width:60px;height:60px;margin:-30px 0 0 -30px}
+  .seal-inner{font-size:18px}
   .env-hint{font-size:10px;letter-spacing:.2em;bottom:-30px}
 
   /* Detail cards */
