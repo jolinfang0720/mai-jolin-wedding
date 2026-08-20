@@ -401,12 +401,14 @@ img{max-width:100%;display:block}
   display:block;width:60px;height:1px;background:var(--taupe);
 }
 .ornament .diamond{
-  width:auto;height:auto;background:none;
-  font-size:9px;color:var(--gold);
-  letter-spacing:.2em;
+  width:7px;height:7px;
+  background:var(--gold);
+  transform:rotate(45deg);
+  font-size:0;                 /* hide any glyph — the shape is CSS-drawn */
+  border-radius:1px;
 }
 .ornament.light span{background:rgba(212,184,145,.4)}
-.ornament.light .diamond{color:var(--gold-soft)}
+.ornament.light .diamond{background:var(--gold-soft)}
 
 /* ============== INVITATION ============== */
 .section-invitation{background:var(--cream)}
