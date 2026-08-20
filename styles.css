@@ -56,8 +56,9 @@ img{max-width:100%;display:block}
   transition:padding .3s ease;
 }
 .nav-logo{
-  font-family:'Great Vibes', cursive;
-  font-size:31px;letter-spacing:.02em;line-height:1;
+  font-family:'Josefin Sans', sans-serif;
+  font-weight:500;
+  font-size:21px;letter-spacing:.24em;line-height:1;
   color:var(--espresso);
 }
 .nav-menu{
