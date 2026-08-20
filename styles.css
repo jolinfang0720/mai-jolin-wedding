@@ -449,13 +449,13 @@ img{max-width:100%;display:block}
   --env-w: 380px;
   --env-h: 250px;
   --flap-h: 150px;
-  --kraft-1:#d0b98f;
-  --kraft-2:#c0a374;
-  --kraft-3:#ac8e60;
-  --flap-1:#c7a878;
-  --flap-2:#b0905e;
-  --gold:#c6a763;
-  --gold-lt:#e8d3a1;
+  --kraft-1:#3a4761;
+  --kraft-2:#2c3850;
+  --kraft-3:#1f2a3d;
+  --flap-1:#39465f;
+  --flap-2:#28344a;
+  --gold:#d4b878;
+  --gold-lt:#f0dda8;
   position:relative;
   display:flex;flex-direction:column;align-items:center;
   perspective:1400px;
@@ -484,18 +484,18 @@ img{max-width:100%;display:block}
 .env-back::after{
   content:'';position:absolute;inset:8px;
   border-radius:4px;
-  border:1px solid rgba(198,167,99,.42);
+  border:1px solid rgba(212,184,120,.45);
   pointer-events:none;
 }
 /* Front pocket (bottom face that holds the letter) */
 .env-front{
   position:absolute;left:0;right:0;bottom:0;
   height:62%;
-  background:linear-gradient(175deg, #dcc59b 0%, #c8ac7d 100%);
+  background:linear-gradient(175deg, #43526e 0%, #33405a 100%);
   border-radius:0 0 8px 8px;
   border-top:1px solid var(--gold);
   z-index:3;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
 }
 /* Top flap — the openable triangle, with a fine gold edge */
 .env-flap{
@@ -536,19 +536,20 @@ img{max-width:100%;display:block}
   border:1px solid rgba(232,211,161,.45);
 }
 .seal-inner{
-  font-family:var(--display);
-  font-size:23px;letter-spacing:.02em;
+  font-family:'Great Vibes', cursive;
+  font-size:34px;letter-spacing:.01em;
   color:#f4dcc4;
-  text-shadow:0 1px 1px rgba(0,0,0,.45);
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
   line-height:1;
+  transform:translateY(2px);
 }
 .seal-inner em{
-  font-family:var(--serif-en);
-  font-style:italic;
-  font-size:.68em;
+  font-family:'Great Vibes', cursive;
+  font-style:normal;
+  font-size:.78em;
   margin:0 1px;
   color:var(--gold-lt);
-  opacity:.9;
+  opacity:.95;
 }
 .env-hint{
   position:absolute;left:0;right:0;bottom:-34px;
@@ -1808,7 +1809,7 @@ img{max-width:100%;display:block}
   /* Envelope — scale down for phones */
   .envelope{--env-w:320px;--env-h:212px;--flap-h:128px}
   .env-seal{top:95px;width:66px;height:66px;margin-left:-33px}
-  .seal-inner{font-size:19px}
+  .seal-inner{font-size:29px}
 
   /* Details cards */
   .detail-card{padding:38px 20px}
@@ -1984,7 +1985,7 @@ img{max-width:100%;display:block}
   /* Envelope — smallest phones */
   .envelope{--env-w:270px;--env-h:182px;--flap-h:110px}
   .env-seal{top:80px;width:58px;height:58px;margin-left:-29px}
-  .seal-inner{font-size:16px}
+  .seal-inner{font-size:25px}
   .env-hint{font-size:10px;letter-spacing:.2em;bottom:-30px}
 
   /* Detail cards */
