@@ -65,63 +65,6 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.section, .detail-card, .tip, .contact-card, .feature, .flight-block')
   .forEach(el => io.observe(el));
 
-// ============== DAY SCHEDULE SCROLL ==============
-(function initScroll(){
-  const scroll = document.getElementById('dayScroll');
-  const paper  = document.getElementById('scrollPaper');
-  const reroll = document.getElementById('scrollReroll');
-  if (!scroll || !paper) return;
-
-  let animating = false;
-  const peek = () => (getComputedStyle(paper).getPropertyValue('--peek').trim() || '172px');
-
-  const open = () => {
-    if (scroll.dataset.open === 'true' || animating) return;
-    animating = true;
-    scroll.dataset.open = 'true';
-    paper.setAttribute('aria-expanded', 'true');
-    paper.style.height = paper.scrollHeight + 'px';
-    const done = (e) => {
-      if (e.propertyName !== 'height') return;
-      paper.style.height = 'auto';
-      animating = false;
-      paper.removeEventListener('transitionend', done);
-    };
-    paper.addEventListener('transitionend', done);
-  };
-
-  const close = () => {
-    if (scroll.dataset.open !== 'true' || animating) return;
-    animating = true;
-    paper.style.height = paper.scrollHeight + 'px';
-    void paper.offsetHeight;
-    requestAnimationFrame(() => {
-      scroll.dataset.open = 'false';
-      paper.setAttribute('aria-expanded', 'false');
-      paper.style.height = peek();
-    });
-    const done = (e) => {
-      if (e.propertyName !== 'height') return;
-      animating = false;
-      paper.removeEventListener('transitionend', done);
-      scroll.scrollIntoView({ behavior:'smooth', block:'center' });
-    };
-    paper.addEventListener('transitionend', done);
-  };
-
-  // Click the parchment (when closed) to unroll; ignore clicks on the re-roll button
-  paper.addEventListener('click', (e) => {
-    if (e.target.closest('.scroll-reroll')) return;
-    if (scroll.dataset.open !== 'true') open();
-  });
-  paper.addEventListener('keydown', (e) => {
-    if ((e.key === 'Enter' || e.key === ' ') && scroll.dataset.open !== 'true') {
-      e.preventDefault(); open();
-    }
-  });
-  if (reroll) reroll.addEventListener('click', close);
-})();
-
 // ============== MOBILE NAV (hamburger overlay) ==============
 (function initMobileNav(){
   const toggle  = document.getElementById('navToggle');
