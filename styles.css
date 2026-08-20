@@ -519,11 +519,11 @@ img{max-width:100%;display:block}
   border:1px solid rgba(240,221,168,.4);
 }
 .seal-inner{
-  font-family:'Great Vibes', cursive;
-  font-size:23px;line-height:1;
+  font-family:'Bodoni Moda', serif;
+  font-weight:500;
+  font-size:20px;letter-spacing:.04em;line-height:1;
   color:#f6e0c8;
   text-shadow:0 1px 2px rgba(0,0,0,.5);
-  transform:translateY(1px);
 }
 .seal-inner em{
   font-family:'Great Vibes', cursive;
@@ -1789,7 +1789,7 @@ img{max-width:100%;display:block}
   /* Envelope — scale down for phones */
   .envelope{--env-w:320px;--env-h:212px}
   .env-seal{width:68px;height:68px;margin:-34px 0 0 -34px}
-  .seal-inner{font-size:20px}
+  .seal-inner{font-size:17px}
 
   /* Details cards */
   .detail-card{padding:38px 20px}
@@ -1965,7 +1965,7 @@ img{max-width:100%;display:block}
   /* Envelope — smallest phones */
   .envelope{--env-w:270px;--env-h:182px}
   .env-seal{width:60px;height:60px;margin:-30px 0 0 -30px}
-  .seal-inner{font-size:18px}
+  .seal-inner{font-size:15px}
   .env-hint{font-size:10px;letter-spacing:.2em;bottom:-30px}
 
   /* Detail cards */
