@@ -1037,9 +1037,16 @@ img{max-width:100%;display:block}
 .address-copy.copied .copy-default{display:none}
 .address-copy.copied .copy-done{display:inline}
 
+.address-sub{
+  margin-top:12px;
+  font-family:var(--serif-tc);
+  font-size:12px;letter-spacing:.04em;
+  color:var(--taupe-warm);
+  line-height:1.6;
+}
 .address-maplink{
   display:inline-block;
-  margin-top:16px;
+  margin-top:14px;
   font-family:var(--serif-tc);
   font-size:13px;letter-spacing:.08em;
   color:var(--bronze);
