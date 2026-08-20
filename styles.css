@@ -497,22 +497,24 @@ img{max-width:100%;display:block}
   z-index:3;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
 }
-/* Top flap — the openable triangle, with a fine gold edge */
+/* Top flap — SVG triangle with an EVEN gold hairline on all three edges */
 .env-flap{
   position:absolute;top:0;left:0;display:block;
   width:var(--env-w);height:var(--flap-h);
-  clip-path:polygon(0 0, 100% 0, 50% 100%);
-  background:linear-gradient(160deg, var(--gold-lt), var(--gold));  /* gold edge layer */
   transform-origin:top center;
   transition:transform .6s cubic-bezier(.6,.05,.28,.98), filter .6s, opacity .5s;
   z-index:5;
   filter:drop-shadow(0 4px 6px rgba(62,44,32,.20));
 }
-.env-flap::after{                         /* inner kraft face, inset to reveal the gold edge */
-  content:'';position:absolute;
-  top:1.5px;left:1.5px;right:1.5px;bottom:3px;
-  clip-path:polygon(0 0, 100% 0, 50% 100%);
-  background:linear-gradient(160deg, var(--flap-1) 0%, var(--flap-2) 100%);
+.env-flap-svg{
+  position:absolute;inset:0;
+  width:100%;height:100%;display:block;overflow:visible;
+}
+.ef-poly{
+  stroke:var(--gold);
+  stroke-width:1.4;
+  vector-effect:non-scaling-stroke;   /* constant 1.4px on every edge, no matter the stretch */
+  stroke-linejoin:round;
 }
 /* Wax seal sits at the flap tip (centre) — burgundy with a gold ring */
 .env-seal{
@@ -537,11 +539,11 @@ img{max-width:100%;display:block}
 }
 .seal-inner{
   font-family:'Great Vibes', cursive;
-  font-size:34px;letter-spacing:.01em;
+  font-size:26px;letter-spacing:.01em;
   color:#f4dcc4;
   text-shadow:0 1px 2px rgba(0,0,0,.5);
   line-height:1;
-  transform:translateY(2px);
+  transform:translateY(1px);
 }
 .seal-inner em{
   font-family:'Great Vibes', cursive;
@@ -1809,7 +1811,7 @@ img{max-width:100%;display:block}
   /* Envelope — scale down for phones */
   .envelope{--env-w:320px;--env-h:212px;--flap-h:128px}
   .env-seal{top:95px;width:66px;height:66px;margin-left:-33px}
-  .seal-inner{font-size:29px}
+  .seal-inner{font-size:22px}
 
   /* Details cards */
   .detail-card{padding:38px 20px}
@@ -1985,7 +1987,7 @@ img{max-width:100%;display:block}
   /* Envelope — smallest phones */
   .envelope{--env-w:270px;--env-h:182px;--flap-h:110px}
   .env-seal{top:80px;width:58px;height:58px;margin-left:-29px}
-  .seal-inner{font-size:25px}
+  .seal-inner{font-size:19px}
   .env-hint{font-size:10px;letter-spacing:.2em;bottom:-30px}
 
   /* Detail cards */
